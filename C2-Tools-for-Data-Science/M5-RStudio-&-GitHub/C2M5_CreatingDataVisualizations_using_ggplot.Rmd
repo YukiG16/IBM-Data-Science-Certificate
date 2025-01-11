@@ -1,0 +1,54 @@
+---
+title: "Data Visualization with mtcars"
+output: html_document
+---
+
+Coursera IBM Data Scicence
+
+Course 2 Tools for Data Science
+
+Module M5 RStudio & GitHub
+
+Creating Data Visualizations using ggplot
+
+```{r all-code}
+# Load required libraries
+library(datasets)
+library(ggplot2)
+
+# Load Data
+data(mtcars)
+
+# View first 5 rows
+head(mtcars, 5)
+
+# Create a scatterplot of displacement (disp) and miles per gallon (mpg)
+ggplot(aes(x = disp, y = mpg), data = mtcars) + 
+  geom_point()
+
+# Add a title
+ggplot(aes(x = disp, y = mpg), data = mtcars) + 
+  geom_point() + 
+  ggtitle("Displacement vs Miles Per Gallon")
+
+# Change axis names
+ggplot(aes(x = disp, y = mpg), data = mtcars) + 
+  geom_point() + 
+  ggtitle("Displacement vs Miles Per Gallon") + 
+  labs(x = "Displacement", y = "Miles per Gallon")
+
+# Convert 'vs' to a factor
+mtcars$vs <- as.factor(mtcars$vs)
+
+# Create boxplot of the distribution for v-shaped and straight engines
+ggplot(aes(x = vs, y = mpg), data = mtcars) + 
+  geom_boxplot()
+
+# Boxplot with fill and transparency
+ggplot(aes(x = vs, y = mpg, fill = vs), data = mtcars) + 
+  geom_boxplot(alpha = 0.3) + 
+  theme(legend.position = "none")
+
+# Histogram of weight (wt)
+ggplot(aes(x = wt), data = mtcars) + 
+  geom_histogram(binwidth = 0.5)
